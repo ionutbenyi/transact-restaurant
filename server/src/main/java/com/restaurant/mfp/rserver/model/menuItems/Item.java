@@ -3,7 +3,7 @@ package com.restaurant.mfp.rserver.model.menuItems;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = "restaurant-items-db.items")
+@Table(schema = "item")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,4 +51,6 @@ public class Item {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public int getId() { return id; }
 }

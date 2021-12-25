@@ -2,7 +2,7 @@ package com.restaurant.mfp.rserver.model.staffing;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = "restaurant-staff-db.staff")
+@Table(schema = "staff")
 public class Staff {
 
     @Id
@@ -59,4 +59,6 @@ public class Staff {
     public void setRole(String function) {
         this.role = role;
     }
+
+    public int getId() { return id; }
 }
