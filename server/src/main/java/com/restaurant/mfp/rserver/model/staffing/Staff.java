@@ -11,20 +11,23 @@ public class Staff {
     private String name;
     private String email;
     private String password;
-    private String role;
+    private String role1;
+    private String username;
 
-    public Staff(int id, String name, String email, String password, String role) {
+    public Staff(int id, String name, String email, String password, String role, String username) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role1 = role;
+        this.username = username;
     }
-    public Staff(String name, String email, String password, String role) {
+    public Staff(String name, String email, String password, String role, String username) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role1 = role;
+        this.username = username;
     }
     public Staff() {}
 
@@ -53,12 +56,20 @@ public class Staff {
     }
 
     public String getRole() {
-        return role;
+        return role1;
     }
 
-    public void setRole(String function) {
-        this.role = role;
+    public void setRole(String role1) {
+        this.role1 = role1;
     }
 
     public int getId() { return id; }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
