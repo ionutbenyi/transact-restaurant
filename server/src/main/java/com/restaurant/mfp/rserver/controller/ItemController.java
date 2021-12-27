@@ -2,6 +2,7 @@ package com.restaurant.mfp.rserver.controller;
 
 import com.restaurant.mfp.rserver.dao.menuItems.MenuItemService;
 import com.restaurant.mfp.rserver.model.menuItems.Item;
+import com.restaurant.mfp.rserver.model.staffing.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,8 +39,13 @@ public class ItemController {
         return itemService.insert(item);
     }
 
-    @PutMapping(value = "/{id}")
-    public Item update(@PathVariable("id") Integer id, @RequestBody Item item) {
-        return itemService.update(id, item);
+    @PutMapping(value = "/")
+    public Item update(@RequestBody Item item) {
+        return itemService.update(item.getId(), item);
+    }
+
+    @DeleteMapping("/")
+    public void delete(@RequestBody Item s) {
+        itemService.delete(s.getId());
     }
 }

@@ -1,7 +1,6 @@
 package com.restaurant.mfp.rserver.controller;
 
 import com.restaurant.mfp.rserver.dao.staffing.StaffService;
-import com.restaurant.mfp.rserver.model.menuItems.Item;
 import com.restaurant.mfp.rserver.model.staffing.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +19,12 @@ public class StaffController {
         this.staffService = staffService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/search")
     public List<Staff> findAll() {
         return staffService.findAll();
     }
 
-    @GetMapping("/search")
+    @GetMapping("/search/find_name")
     public Staff findByName( @RequestParam(required = true) String name ) throws Exception {
         return staffService.getStaffByName(name);
     }
@@ -40,8 +39,13 @@ public class StaffController {
         return staffService.insert(employee);
     }
 
-    @PutMapping(value = "/{id}")
-    public Staff update(@PathVariable("id") Integer id, @RequestBody Staff s) {
-        return staffService.update(id, s);
+    @PutMapping(value = "/")
+    public Staff update(@RequestBody Staff s) {
+        return staffService.update(s.getId(), s);
+    }
+
+    @DeleteMapping("/")
+    public void delete(@RequestBody Staff s) {
+        staffService.delete(s.getId());
     }
 }
