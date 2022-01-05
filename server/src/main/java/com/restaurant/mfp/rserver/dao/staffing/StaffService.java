@@ -19,12 +19,12 @@ public class StaffService {
         this.staffRepository = staffRepository;
     }
 
-    public Staff getStaffByName(String itemName) throws Exception {
-        Staff staffObject = staffRepository.getStaffByName(itemName);
-        if (staffObject == null) {
+    public List<Staff> getStaffByName(String itemName) throws Exception {
+        List<Staff> staffList = staffRepository.getStaffByName(itemName);
+        if (staffList.isEmpty()) {
             throw new Exception("Staff not found by name");
         }
-        return staffObject;
+        return staffList;
     }
 
     public Staff getStaffById(Integer id) throws Exception {

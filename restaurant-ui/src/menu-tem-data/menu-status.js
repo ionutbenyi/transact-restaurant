@@ -123,15 +123,15 @@ class CompanyStatus extends React.Component{
         });
     }
 
-    componentDidMount() {
+    // componentDidMount() {
 
-        let i = localStorage.getItem("userId");
-        this.compId = i;
-        console.log("i="+i);
-        if (i != null){
-            this.fetchCompanyInfo(i);
-        }
-    }
+    //     let i = localStorage.getItem("userId");
+    //     this.compId = i;
+    //     console.log("i="+i);
+    //     if (i != null){
+    //         this.fetchCompanyInfo(i);
+    //     }
+    // }
 
     
 

@@ -25,7 +25,7 @@ public class StaffController {
     }
 
     @GetMapping("/search/find_name")
-    public Staff findByName( @RequestParam(required = true) String name ) throws Exception {
+    public List<Staff> findByName( @RequestParam(required = true) String name ) throws Exception {
         return staffService.getStaffByName(name);
     }
 
@@ -35,7 +35,7 @@ public class StaffController {
     }
 
     @PostMapping("/new_employee")
-    public Integer insert(@RequestBody Staff employee) {
+    public Integer insert(Staff employee) {
         return staffService.insert(employee);
     }
 

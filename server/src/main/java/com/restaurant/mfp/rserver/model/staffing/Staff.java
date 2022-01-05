@@ -1,4 +1,6 @@
 package com.restaurant.mfp.rserver.model.staffing;
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,6 +24,7 @@ public class Staff {
         this.role1 = role;
         this.username = username;
     }
+    @JsonCreator
     public Staff(String name, String email, String password, String role, String username) {
         this.name = name;
         this.email = email;
