@@ -42,19 +42,21 @@ def staff_client_menu(number, si):
         # get staff member by name
         name = input("Staff name: ")
         staff_list = si.get_staff_by_name(name)
-        staff_res = None
-        if len(staff_list) > 1:
-            username = input("Multiple names found. Insert username: ")
-            for staff in staff_list:
-                if staff['username'] == username:
-                    staff_res = staff
-                    break
-            if not staff_res:
-                print("Invalid username")
+        if not staff_list == []:
+            staff_res = None
+            if len(staff_list) > 1:
+                username = input("Multiple names found. Insert username: ")
+                for staff in staff_list:
+                    if staff['username'] == username:
+                        staff_res = staff
+                        break
+                if not staff_res:
+                    print("Invalid username")
+            else:
+                staff_res = staff_list[0]
+            print_staff(staff_res, False)
         else:
-            staff_res = staff_list[0]
-        return staff_res
-
+            print("No entries found")
 
     if number == 3:
         # add new member
@@ -70,37 +72,119 @@ def staff_client_menu(number, si):
             "role": role,
             "username": username,
         }
-        print(staff)
         si.create_staff(staff)
     
     if number == 4:
-        # update existing member
-        pass
+        name = input("Staff name: ")
+        staff_list = si.get_staff_by_name(name)
+        if not staff_list == []:
+            staff_res = None
+            if len(staff_list) > 1:
+                username = input("Multiple names found. Insert username: ")
+                for staff in staff_list:
+                    if staff['username'] == username:
+                        staff_res = staff
+                        break
+                if not staff_res:
+                    print("Invalid username")
+            else:
+                staff_res = staff_list[0]
+
+            name = input("name: ")
+            if name != "": staff_res['name'] = name
+            role = input("role: ")
+            if role != "": staff_res['role'] = role
+            email = input("email: ")
+            if email != "": staff_res['email'] = email
+            username = input("username: ")
+            if username != "": staff_res['username'] = username
+            password = input("password: ")
+            if password != "": staff_res['password'] = password
+
+            id = staff_res['id']
+            si.update_staff(staff_res, id)
+        else:
+            print("No entries found")
+
     if number == 5: 
         # delete existing member
-        pass
+        name = input("Staff name: ")
+        staff_list = si.get_staff_by_name(name)
+        if not staff_list == []:
+            print(staff_list)
+            staff_res = None
+            if len(staff_list) > 1:
+                username = input("Multiple names found. Insert username: ")
+                for staff in staff_list:
+                    if staff['username'] == username:
+                        staff_res = staff
+                        break
+                if not staff_res:
+                    print("Invalid username")
+            else:
+                staff_res = staff_list[0]
+
+            id = staff_res['id']
+            si.delete_staff(staff_res, id)
+        else:
+            print("No entries found")
 
 def item_client_menu(number, ii):
     if number == 1:
         # get all items
-        item_list = ii.get_staff()
+        item_list = ii.get_item()
         if item_list:
-            print_staff_list(item_list, False)
+            print_item_list(item_list)
         else:
             print("Cannot retrieve item or list is empty")
     if number == 2:
         #get item by name
-        pass
+        name = input("Item name: ")
+        item_res = ii.get_item_by_name(name)
+        if not item_res == []:
+            print_item(item_res[0])
+        else:
+            print("No entries found")
 
     if number == 3:
         # add new item
-        pass
+        name = input("name: ")
+        grams = input("grams: ")
+        price = input("price: ")
+        item = {
+            "name": name,
+            "grams": grams,
+            "price": price
+        }
+        ii.create_item(item)
+        
     if number == 4:
         # update existing item
-        pass
+        name = input("Item name: ")
+        item_list = ii.get_item_by_name(name)
+        if not item_list == []:
+            item = item_list[0]
+            name = input("name: ")
+            if name != "": item['name'] = name
+            grams = input("grams: ")
+            if grams != "": item['grams'] = grams
+            price = input("price: ")
+            if price != "": item['price'] = price
+            id = item['id']
+            ii.update_item(item, id)
+        else:
+            print("No entries found")
+
     if number == 5: 
         # delete existing item
-        pass
+        name = input("Item name: ")
+        item_list = ii.get_item_by_name(name)
+        if not item_list == []:
+            item = item_list[0]
+            id = item['id']
+            ii.delete_item(item, id)
+        else:
+            print("No entries found")
 
 def print_menu(si, ii):
     print("Transact-Restaurant functionalities:")

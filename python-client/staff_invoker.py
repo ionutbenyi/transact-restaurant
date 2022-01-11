@@ -29,15 +29,19 @@ class StaffInvoker:
         except requests.exceptions.HTTPError as error:
             print(error)
 
-    def update_staff(self, staff):
+    def update_staff(self, staff, id):
+        url = "/update/?id="+str(id)
         try:
-            pass
+            response = requests.put(staff_header+url, data=staff)
+            print(response.status_code)
         except requests.exceptions.HTTPError as error:
             print(error)
 
-    def delete_staff(self, staff):
+    def delete_staff(self, staff, id):
+        url = "/delete/?id="+str(id)
         try:
-            pass
+            response = requests.delete(staff_header + url, data=staff)
+            print(response.status_code)
         except requests.exceptions.HTTPError as error:
             print(error)
 
